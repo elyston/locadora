@@ -78,24 +78,34 @@ public class cliente implements login {
     public String getSenha(){
         return this.senha;
     }
+    //este método exibe pro usuário e gerente quais carros estão na reserva ou alocação
     @Override
-    public void consultaReserva(carro[] reserva,int contador) {
-        for(int i = 0; i < contador; i++){
-            System.out.println(reserva[i].modelo);
-        }
-    }
-    @Override
-    public void consultaLocado(carro[] locado, int contador) {
+    public void consultar(carro[] locado, int contador) {
         for(int i = 0; i < contador; i++){
             System.out.println(locado[i].modelo);
         }
     }
+    //ste método mostra todos os carrose as devidas informações 
     @Override
     public void mostraCarros(carro[] c) {
-        for (carro c1 : c) {
-            System.out.println("carro " + c1.modelo);
+        for (int i = 0; i < c.length; i++) {
+            System.out.println("carro " + c[i].modelo);
+            System.out.println("fabricante " + c[i].marca);
+            for(int j = 0; j < c[i].ano.length; j++){
+                System.out.println("ano " + c[i].ano[j]);
+                System.out.println("preço (locação): " + c[i].PLocacao[j]);
+                System.out.println("preço (modelo): " + c[i].PModelo[j]);
+            }
+            for(int j = 0; j < c[i].PLocacao.length; j++){
+                System.out.println("preço (locação): " + c[i].PLocacao[j]);
+            }
+            for(int j = 0; j < c[i].PModelo.length; j++){
+                System.out.println("preço (modelo): " + c[i].PModelo[j]);
+            }
+            System.out.println("quantidade " + c[i].quantidade);
         }
     }
+    //método que retorna null pois cliente não pode fazer cadastro
     @Override
     public cliente cadastro(String nome, String CPF, String rg, String CNH, String CCredito, String end, String senha) {
         try {
@@ -105,6 +115,7 @@ public class cliente implements login {
         }
         return null;
     }
+    //este método retorna à uma classe carro direcionada para reserva
     @Override
     public carro reserva(carro[] v, int numcarros, String veiculo, cliente pessoa) {
         carro c = new carro();
@@ -112,9 +123,7 @@ public class cliente implements login {
             if(veiculo.equals(v[i].modelo)){
                 c = v[i];
                 System.out.println("carro reservado com sucesso");
-//            }else{
-//                System.out.println("este carro nao está reservado");
-            }
+          }
         }
         return c;
     }

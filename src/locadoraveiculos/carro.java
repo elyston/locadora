@@ -11,27 +11,23 @@ package locadoraveiculos;
  */
 public class carro {
     public String marca;
-    public int ano, quantidade;;
+    public int[] ano; 
+    public int quantidade;;
     public String modelo;
-    public double PLocacao;
-    public double PModelo;
+    public double[] PLocacao;
+    public double[] PModelo;
     
-    void mostraquantidade(String nome){
-        if(nome.equals(this.modelo)){
-            System.out.println(this.quantidade);
-        }
-    }
+    //o gerente insere a quantidade de carros disponiveis
     void inserequantidade(int qtde){
         this.quantidade = qtde;
     }
-    int quantidadeLocado(carro[] c, String modelo){
-        int cont = 0;
-        for (carro c1 : c) {
-            if (c1.modelo.equals(modelo)) {
-                cont++;
-            }
-        }
+    //este método retorna pro método abaixo na sequencia quantos carros foram alocados
+    int quantidadeDisponivel(int cont){
+        this.quantidade =- cont;
         return cont;
     }
-    
+    //este método indica pro cliente quantos carros estão disponiveis
+    void mostraquantidade(int cont){
+        System.out.println("quantidade: "+this.quantidadeDisponivel(cont));
+    }
 }
