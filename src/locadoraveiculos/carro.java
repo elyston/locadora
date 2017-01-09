@@ -10,9 +10,28 @@ package locadoraveiculos;
  * @author elyston
  */
 public class carro {
-    String marca;
-    int ano;
-    String modelo;
-    double PLocacao;
-    double PModelo;
+    public String marca;
+    public int ano, quantidade;;
+    public String modelo;
+    public double PLocacao;
+    public double PModelo;
+    
+    void mostraquantidade(String nome){
+        if(nome.equals(this.modelo)){
+            System.out.println(this.quantidade);
+        }
+    }
+    void inserequantidade(int qtde){
+        this.quantidade = qtde;
+    }
+    int quantidadeLocado(carro[] c, String modelo){
+        int cont = 0;
+        for (carro c1 : c) {
+            if (c1.modelo.equals(modelo)) {
+                cont++;
+            }
+        }
+        return cont;
+    }
+    
 }

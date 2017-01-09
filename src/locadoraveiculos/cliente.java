@@ -23,157 +23,99 @@ public class cliente implements login {
     private String comprovante;
     private String senha;
 
-    @Override
-    public void login(String nome, String senha) {
-        
+    
+    public String getNome() {
+        return nome;
     }
-
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getCPF() {
+        return CPF;
+    }
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+    public String getRG() {
+        return RG;
+    }
+    public void setRG(String RG) {
+        this.RG = RG;
+    }
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getEnd() {
+        return end;
+    }
+    public void setEnd(String end) {
+        this.end = end;
+    }
+    public String getCNH() {
+        return CNH;
+    }
+    public void setCNH(String CNH) {
+        this.CNH = CNH;
+    }
+    public String getCCredito() {
+        return CCredito;
+    }
+    public void setCCredito(String CCredito) {
+        this.CCredito = CCredito;
+    }
+    public String getComprovante() {
+        return comprovante;
+    }
+    public void setComprovante(String comprovante) {
+        this.comprovante = comprovante;
+    }
+    public void setSenha(String senha){
+        this.senha = senha;
+    }
+    public String getSenha(){
+        return this.senha;
+    }
     @Override
-    public void cadastro(cliente pessoa) {
+    public void consultaReserva(carro[] reserva,int contador) {
+        for(int i = 0; i < contador; i++){
+            System.out.println(reserva[i].modelo);
+        }
+    }
+    @Override
+    public void consultaLocado(carro[] locado, int contador) {
+        for(int i = 0; i < contador; i++){
+            System.out.println(locado[i].modelo);
+        }
+    }
+    @Override
+    public void mostraCarros(carro[] c) {
+        for (carro c1 : c) {
+            System.out.println("carro " + c1.modelo);
+        }
+    }
+    @Override
+    public cliente cadastro(String nome, String CPF, String rg, String CNH, String CCredito, String end, String senha) {
         try {
             throw new RestrictionException("cliente não é permitido fazer cadastro");
         } catch (RestrictionException ex) {
             System.err.println("este cliente não está autorizado a fazer esta operação");
         }
+        return null;
     }
-
     @Override
-    public void reserva(carro[] v, String veiculo, cliente pessoa) {
-        for (carro v1 : v) {
-            if (v1.modelo.equals(veiculo)) {
-                System.out.println("carro "+veiculo+" reservado para "+pessoa.nome+" com sucesso");
+    public carro reserva(carro[] v, int numcarros, String veiculo, cliente pessoa) {
+        carro c = new carro();
+        for(int i = 0; i < v.length; i++){
+            if(veiculo.equals(v[i].modelo)){
+                c = v[i];
+                System.out.println("carro reservado com sucesso");
+//            }else{
+//                System.out.println("este carro nao está reservado");
             }
         }
+        return c;
     }
-
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     * @return the CPF
-     */
-    public String getCPF() {
-        return CPF;
-    }
-
-    /**
-     * @param CPF the CPF to set
-     */
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    /**
-     * @return the RG
-     */
-    public String getRG() {
-        return RG;
-    }
-
-    /**
-     * @param RG the RG to set
-     */
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
-    /**
-     * @return the phone
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * @param phone the phone to set
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    /**
-     * @return the end
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * @param end the end to set
-     */
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    /**
-     * @return the CNH
-     */
-    public String getCNH() {
-        return CNH;
-    }
-
-    /**
-     * @param CNH the CNH to set
-     */
-    public void setCNH(String CNH) {
-        this.CNH = CNH;
-    }
-
-    /**
-     * @return the CCredito
-     */
-    public String getCCredito() {
-        return CCredito;
-    }
-
-    /**
-     * @param CCredito the CCredito to set
-     */
-    public void setCCredito(String CCredito) {
-        this.CCredito = CCredito;
-    }
-
-    /**
-     * @return the comprovante
-     */
-    public String getComprovante() {
-        return comprovante;
-    }
-
-    /**
-     * @param comprovante the comprovante to set
-     */
-    public void setComprovante(String comprovante) {
-        this.comprovante = comprovante;
-    }
-
-    public void setSenha(String senha){
-        this.senha = senha;
-    }
-    
-    public String getSenha(){
-        return this.senha;
-    }
-
-    @Override
-    public void consultaReserva(carro[] reserva) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void consultaLocado(carro[] locado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

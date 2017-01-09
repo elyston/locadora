@@ -10,9 +10,9 @@ package locadoraveiculos;
  * @author elyston
  */
 public interface login {
-    void login(String nome, String senha);
-    void cadastro(cliente pessoa);
-    void reserva(carro[] v, String veiculo, cliente pessoa);
-    void consultaReserva(carro[] reserva);
-    void consultaLocado(carro[] locado);
+    public cliente cadastro(String nome, String CPF, String rg, String CNH, String CCredito, String end, String senha);
+    carro reserva(carro[] v, int numcarros, String veiculo, cliente pessoa);
+    void consultaReserva(carro[] reserva,int contador);
+    void consultaLocado(carro[] locado, int contador);
+    void mostraCarros(carro[] c);
 }
