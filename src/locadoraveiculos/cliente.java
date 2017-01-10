@@ -91,16 +91,14 @@ public class cliente implements login {
         for (int i = 0; i < c.length; i++) {
             System.out.println("carro " + c[i].modelo);
             System.out.println("fabricante " + c[i].marca);
+            System.out.println("preço (modelo): " + c[i].PModelo);
             for(int j = 0; j < c[i].ano.length; j++){
                 System.out.println("ano " + c[i].ano[j]);
                 System.out.println("preço (locação): " + c[i].PLocacao[j]);
-                System.out.println("preço (modelo): " + c[i].PModelo[j]);
+                
             }
             for(int j = 0; j < c[i].PLocacao.length; j++){
                 System.out.println("preço (locação): " + c[i].PLocacao[j]);
-            }
-            for(int j = 0; j < c[i].PModelo.length; j++){
-                System.out.println("preço (modelo): " + c[i].PModelo[j]);
             }
             System.out.println("quantidade " + c[i].quantidade);
         }

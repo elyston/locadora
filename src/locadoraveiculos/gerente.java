@@ -62,11 +62,13 @@ public class gerente implements login{
     public void consultar(carro[] locado, int contador) {
         for(int i = 0; i < locado.length; i++){
             System.out.println(locado[i].modelo);
+            
             for (int j = 0; j < contador; j++) {
                 System.out.print("ano: "+locado[i].ano[j]);
-                System.out.print("ano: "+locado[i].PModelo[j]);
+                
                 System.out.print("ano: "+locado[i].PLocacao[j]);
             }
+            System.out.print("ano: "+locado[i].PModelo);
         }
     }
     //espaço para buscar carros (sugestao)
