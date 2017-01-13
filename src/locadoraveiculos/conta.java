@@ -28,13 +28,10 @@ abstract class conta {
     public abstract void deposita(double dinheiro);
     public abstract void saca(double dinheiro);
     public double parcela(int mensalidade, double valor){
-        return this.saldo -= (valor * mensalidade);
+        return valor/mensalidade;
     }
     public double parcela(int mensalidade, double valor, double juros){
-        for(int i = 1; i <= mensalidade; i++){
-            valor += (valor * juros);
-        }
-        return this.saldo -= valor;
+        return (valor/mensalidade)+juros;
     }
     public double atualizajuros(int qtmeses, double juros){
         double valorFinal = 0;

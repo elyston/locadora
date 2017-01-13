@@ -12,5 +12,5 @@ package locadoraveiculos;
 public interface login {
     abstract cliente cadastro(String nome, String CPF, String rg, String CNH, String CCredito, String end, String senha, double saldo, String agencia);
     public carro reservar(carro v, int numcarros, String veiculo);
-    public void mostrarCarros(carro[] c);
+//    public void mostrarCarros(carro[] c);
 }

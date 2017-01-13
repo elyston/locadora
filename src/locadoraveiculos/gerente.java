@@ -196,11 +196,11 @@ public class gerente implements login  {
             }
         return c;
     }
-    @Override
-    public void mostrarCarros(carro[] Z) {
-        for (int i = 0, j = 0 ; i < Z.length || j < Z[i].quantidade; i++) {
-            Z[i].consulta();
-        }
-    }
+//    @Override
+//    public void mostrarCarros(carro[] Z) {
+//        for (int i = 0, j = 0 ; i < Z.length || j < Z[i].quantidade; i++) {
+//            Z[i].consulta();
+//        }
+//    }
     
 }

@@ -34,9 +34,7 @@ public class LocadoraVeiculos {
         System.out.print("senha: ");        senha = entre.next();
         //área do administrador
         if(nome.equals(Q.getNome()) && senha.equals(Q.getSenha())){
-//            Q.gerente();
               P1 = Q;
-              
               do{
                   System.out.print("entre com a marca do carro: ");     String M = entre.next();    System.out.println();
                   System.out.print("entre com a quantidade do carro: ");  int quant = entre.nextInt();   System.out.println();
@@ -50,19 +48,42 @@ public class LocadoraVeiculos {
                   Carro[i].consulta();
               }
               do{
-                  System.out.print("nome: ");     String N = entre.next();    System.out.println();
-                  System.out.print("endereço: ");  String End = entre.next();   System.out.println();
-                  System.out.print("rg: ");   String rg = entre.next(); System.out.println();
-                  System.out.print("CPF: ");    String cpf = entre.next(); System.out.println();
-                  System.out.print("CNH: ");     String cnh = entre.next();    System.out.println();
-                  System.out.print("numero do cartão de credito: ");  String CC = entre.next();   System.out.println();
-                  System.out.print("idade: ");   int idade = entre.nextInt(); System.out.println();
-                  System.out.print("senha: ");    String S = entre.next();  System.out.println();
-                  System.out.print("agencia: ");    String A = entre.next();  System.out.println();
-                  System.out.print("telefone contato: ");    String phone = entre.next();  System.out.println();
-                  System.out.print("saldo em conta: ");    double dinheiro = entre.nextDouble();  System.out.println();
+                  System.out.print("deseja cadastrar um novo cliente? s/n: "); 
+                  dec = entre.next();
+                  System.out.print("nome: ");     
+                  String N = entre.next();    
+                  System.out.println();
+                  System.out.print("endereço: ");  
+                  String End = entre.next();   
+                  System.out.println();
+                  System.out.print("rg: ");   
+                  String rg = entre.next(); 
+                  System.out.println();
+                  System.out.print("CPF: ");    
+                  String cpf = entre.next(); 
+                  System.out.println();
+                  System.out.print("CNH: ");     
+                  String cnh = entre.next();    
+                  System.out.println();
+                  System.out.print("numero do cartão de credito: ");  
+                  String CC = entre.next();   
+                  System.out.println();
+                  System.out.print("idade: ");   
+                  int idade = entre.nextInt(); 
+                  System.out.println();
+                  System.out.print("senha: ");    
+                  String S = entre.next();  
+                  System.out.println();
+                  System.out.print("agencia: ");    
+                  String A = entre.next();  
+                  System.out.println();
+                  System.out.print("telefone contato: ");    
+                  String phone = entre.next();  
+                  System.out.println();
+                  System.out.print("saldo em conta: ");    
+                  double dinheiro = entre.nextDouble();  
+                  System.out.println();
                   C[cont2] = new cliente(N, cpf, rg, phone, End, cnh, CC, senha, idade, A, dinheiro);
-                  System.out.print("deseja cadastrar outro cliente? s/n: "); dec = entre.next(); 
                   cont2++;
               }while(cont2 < C.length && "s".equals(dec));
               for (int i = 0; i < cont2; i++) {
@@ -84,7 +105,14 @@ public class LocadoraVeiculos {
                                         reserva[cont3] = new carro();
                                         reserva[cont3] = Carro[i];
                                         reserva[cont3].quantidade = QCarro;
-                                        Q.pagamento(C[i], Carro[j].PModelo, juros);
+                                        System.out.println("1 - a vista");
+                                        System.out.println("2 - parcela");
+                                        int op = entre.nextInt();
+                                        if(op == 1){
+                                            Q.pagamento(C[i], Carro[j].PModelo, juros);
+                                        }else{
+                                            Q.pagamento(C[i], Carro[j].PModelo,1);
+                                        }
                                         cont3++;
                                         System.out.println("reserva feita com sucesso");
                                         System.out.println("saldo do cliente: "+C[j].C.getSaldo());
@@ -101,6 +129,8 @@ public class LocadoraVeiculos {
               for (int k = 0; k < cont3; k++) {
                   reserva[k].consulta();
               }
+        }else{
+            System.out.println("nome ou senha não encontrado");
         }
         //área do cliente
     }

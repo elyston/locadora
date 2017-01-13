@@ -135,6 +135,7 @@ public class cliente implements login{
         Scanner input = new Scanner(System.in);
         int opcao1,opcao2,parcelas;
         String opcao;
+        double custo;
         System.out.println("metodo de pagamento:");
         System.out.println("1 - cartão de credito");
         System.out.println("2 - transferencia em conta corrente:");
@@ -153,21 +154,21 @@ public class cliente implements login{
                         System.out.print("digite o numero de parcelas: ");
                         parcelas = input.nextInt();
                         System.out.println();
-                        double custo = GE.C.parcela(parcelas, valor, taxa);
+                        custo = GE.C.parcela(parcelas, valor, taxa);
                         this.C.saca(custo);
                         GE.C.deposita(custo);
                     }
                     break;
                 case 2:
-                    System.out.print("entre com o numero do cartão de credito");
+                    System.out.print("entre com o numero da agencia");
                     opcao = input.next();
-                    if(opcao.equals(this.CCredito)){
+                    if(opcao.equals(this.C.agencia)){
                         System.out.print("digite o numero de parcelas: ");
                         parcelas = input.nextInt();
                         System.out.println();
-                        valor -= (valor*taxa);
-                        GE.C.deposita(this.C.parcela(parcelas, valor));
-                        this.C.saca(GE.C.parcela(parcelas, valor));
+                        custo = GE.C.parcela(parcelas,valor);
+                        GE.C.deposita(custo);
+                        this.C.saca(custo);
                     }
                     break;
             }
@@ -191,10 +192,10 @@ public class cliente implements login{
         
     }
 
-    @Override
-    public void mostrarCarros(carro[] c) {
-        for (int i = 0, j = 0 ; i < c.length && j < c[i].quantidade; i++) {
-            c[i].consulta();
-        }
-    }
+//    @Override
+//    public void mostrarCarros(carro[] c) {
+//        for (int i = 0, j = 0 ; i < c.length && j < c[i].quantidade; i++) {
+//            c[i].consulta();
+//        }
+//    }
 }
