@@ -5,14 +5,14 @@
  */
 package locadoraveiculos;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
 
 /**
  *
  * @author elyston
  */
-public class cliente implements login {
+public class cliente implements login{
+
     private String nome;
     private String CPF;
     private String RG;
@@ -20,10 +20,30 @@ public class cliente implements login {
     private String end;
     private String CNH;
     private String CCredito;
-    private String comprovante;
     private String senha;
-
-    
+    private int idade;
+    conta C;
+    public cliente(String nome, String CPF, String RG, String phone, String end, String CNH, String CCredito, String senha, int idade, String agencia, double saldo){
+        this.C = new contacorrente();
+        this.setNome(nome);
+        this.setCPF(CPF);
+        this.setEnd(end);
+        this.setRG(RG);
+        this.setCNH(CNH);
+        this.setCCredito(CCredito);
+        this.setPhone(phone);
+        this.setSenha(senha);
+        this.setIdade(idade);
+        this.C.setAgencia(agencia);
+        this.C.setSaldo(saldo);
+    }
+    //métodos encapsulados
+    public void setIdade(int idade){
+        this.idade = idade;
+    }
+    public int getIdade(){
+        return this.idade;
+    }
     public String getNome() {
         return nome;
     }
@@ -66,63 +86,115 @@ public class cliente implements login {
     public void setCCredito(String CCredito) {
         this.CCredito = CCredito;
     }
-    public String getComprovante() {
-        return comprovante;
-    }
-    public void setComprovante(String comprovante) {
-        this.comprovante = comprovante;
-    }
     public void setSenha(String senha){
         this.senha = senha;
     }
     public String getSenha(){
         return this.senha;
     }
-    //este método exibe pro usuário e gerente quais carros estão na reserva ou alocação
-    @Override
-    public void consultar(carro[] locado, int contador) {
-        for(int i = 0; i < contador; i++){
-            System.out.println(locado[i].modelo);
-        }
+    void cliente(){
+        System.out.println("nome: "+this.getNome());
+        System.out.println("CPF: "+this.getCPF());
+        System.out.println("end: "+this.getEnd());
+        System.out.println("CNH: "+this.getCNH());
+        System.out.println("RG: "+this.getRG());
+        System.out.println("CCredito: "+this.getCCredito());
+        System.out.println("senha: "+this.getSenha());
+        System.out.println("saldo na conta: "+this.C.saldo);
+        System.out.println("agencia da conta: "+this.C.getAgencia());
     }
-    //ste método mostra todos os carrose as devidas informações 
+
     @Override
-    public void mostraCarros(carro[] c) {
-        for (int i = 0; i < c.length; i++) {
-            System.out.println("carro " + c[i].modelo);
-            System.out.println("fabricante " + c[i].marca);
-            System.out.println("preço (modelo): " + c[i].PModelo);
-            for(int j = 0; j < c[i].ano.length; j++){
-                System.out.println("ano " + c[i].ano[j]);
-                System.out.println("preço (locação): " + c[i].PLocacao[j]);
-                
-            }
-            for(int j = 0; j < c[i].PLocacao.length; j++){
-                System.out.println("preço (locação): " + c[i].PLocacao[j]);
-            }
-            System.out.println("quantidade " + c[i].quantidade);
-        }
+    public cliente cadastro(String nome, String CPF, String rg, String CNH, String CCredito, String end, String senha, double saldo, String agencia){
+        cliente c = null;
+        c.setNome(nome);
+        c.setCPF(CPF);
+        c.setCNH(CNH);
+        c.setEnd(end);
+        c.setRG(rg);
+        c.setCCredito(CCredito);
+        c.setSenha(senha);
+        c.C.setSaldo(saldo);
+        c.C.setAgencia(agencia);
+        return c;
     }
-    //método que retorna null pois cliente não pode fazer cadastro
+
     @Override
-    public cliente cadastro(String nome, String CPF, String rg, String CNH, String CCredito, String end, String senha) {
-        try {
-            throw new RestrictionException("cliente não é permitido fazer cadastro");
-        } catch (RestrictionException ex) {
-            System.err.println("este cliente não está autorizado a fazer esta operação");
-        }
-        return null;
-    }
-    //este método retorna à uma classe carro direcionada para reserva
-    @Override
-    public carro reserva(carro[] v, int numcarros, String veiculo, cliente pessoa) {
-        carro c = new carro();
-        for(int i = 0; i < v.length; i++){
-            if(veiculo.equals(v[i].modelo)){
-                c = v[i];
+    public carro reservar(carro v, int numcarros, String veiculo) {
+        carro c = null;
+        if(veiculo.equals(v.modelo)){
+                c = v; 
+                c.quantidade = numcarros;
                 System.out.println("carro reservado com sucesso");
-          }
         }
         return c;
+    }
+    
+    
+    public void pagamento(gerente GE, double valor, double taxa) {
+        Scanner input = new Scanner(System.in);
+        int opcao1,opcao2,parcelas;
+        String opcao;
+        System.out.println("metodo de pagamento:");
+        System.out.println("1 - cartão de credito");
+        System.out.println("2 - transferencia em conta corrente:");
+        System.out.print("digite a opção: ");
+        opcao1 = input.nextInt();
+        System.out.println();
+        if(opcao1 == 1){
+            System.out.println("1 - parcelado com juros");
+            System.out.println("2 - parcelado sem juros");
+            opcao2 = input.nextInt();
+            switch(opcao2){
+                case 1: 
+                    System.out.print("entre com o numero do cartão de credito");
+                    opcao = input.next();
+                    if(opcao.equals(this.CCredito)){
+                        System.out.print("digite o numero de parcelas: ");
+                        parcelas = input.nextInt();
+                        System.out.println();
+                        double custo = GE.C.parcela(parcelas, valor, taxa);
+                        this.C.saca(custo);
+                        GE.C.deposita(custo);
+                    }
+                    break;
+                case 2:
+                    System.out.print("entre com o numero do cartão de credito");
+                    opcao = input.next();
+                    if(opcao.equals(this.CCredito)){
+                        System.out.print("digite o numero de parcelas: ");
+                        parcelas = input.nextInt();
+                        System.out.println();
+                        valor -= (valor*taxa);
+                        GE.C.deposita(this.C.parcela(parcelas, valor));
+                        this.C.saca(GE.C.parcela(parcelas, valor));
+                    }
+                    break;
+            }
+        }else{
+            if(opcao1 == 2){
+                String F, G;
+                System.out.print("entre com dados de conta");
+                F = input.next();
+                if(F.equals(this.C.agencia)){
+                    System.out.print("deseja transferir esse valor para sua conta?");
+                    G = input.next();
+                    System.out.println();
+                    if("sim".equals(G)){
+                        GE.C.deposita(valor);
+                        this.C.saca(valor);
+                    }
+                }
+            }
+        }
+        
+        
+    }
+
+    @Override
+    public void mostrarCarros(carro[] c) {
+        for (int i = 0, j = 0 ; i < c.length && j < c[i].quantidade; i++) {
+            c[i].consulta();
+        }
     }
 }

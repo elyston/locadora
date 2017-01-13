@@ -27,32 +27,37 @@ public class carro {
         this.quantidade = quantidade;
         this.PModelo = Pmodelo;
         for(int i = 0; i < quantidade; i++){
-            System.out.println("    ano do carro "+modelo+": ");
+            System.out.print("    ano do carro "+modelo+": ");
             this.ano[i] = input.nextInt();
             System.out.println();
-            System.out.print("  valor da alocação do carro: ");
+            System.out.print("    valor da alocação do carro "+modelo+": ");
             this.PLocacao[i] = input.nextDouble();
+            System.out.println();
         }
     }
     carro(){
-        System.out.println("obrigado pela preferencia, volte sempre");
+        
     }
     //este método retorna pro método abaixo na sequencia quantos carros foram alocados
-    int quantidadeDisponivel(int cont){
-        this.quantidade =- cont;
-        return cont;
+    void novaQuantidade(int cont){
+       this.quantidade -= cont;
     }
     //este método indica pro cliente quantos carros estão disponiveis
-    void mostraquantidade(int cont){
-        System.out.println("quantidade: "+this.quantidadeDisponivel(cont));
-    }
-    void exibirCarros(){
-        System.out.println("marca: "+this.marca);
-        System.out.println("modelo: "+this.modelo);
-        for (int i = 0; i < ano.length; i++) {
-            System.out.print("  ano: "+this.ano[i]);
-            System.out.println();
+    void mostraquantidade(String nodelo){
+        for (int i = 0; i < this.quantidade; i++) {
+            if(marca.equals(this.marca)){
+                System.out.print("modelo: "+this.modelo+"    quantidade: "+this.quantidade);
+            }
         }
-        System.out.println("quantidade: "+this.quantidade);
+    }
+    void consulta(){
+        System.out.println("carro " + this.modelo);
+            System.out.println("fabricante " + this.marca);
+            System.out.println("preço (modelo): " + this.PModelo);
+            for(int j = 0; j < this.quantidade; j++){
+                System.out.println("ano " + this.ano[j]);
+                System.out.println("preço (locação): " + this.PLocacao[j]);
+            }
+            System.out.println("quantidade " + this.quantidade);
     }
 }
