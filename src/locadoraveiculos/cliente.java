@@ -21,6 +21,7 @@ public class cliente implements login{
     private String CNH;
     private String CCredito;
     private String senha;
+    private String comprovante;
     private int idade;
     conta C;
     public cliente(String nome, String CPF, String RG, String phone, String end, String CNH, String CCredito, String senha, int idade, String agencia, double saldo){
@@ -198,4 +199,18 @@ public class cliente implements login{
 //            c[i].consulta();
 //        }
 //    }
+
+    /**
+     * @return the comprovante
+     */
+    public String getComprovante() {
+        return comprovante;
+    }
+
+    /**
+     * @param comprovante the comprovante to set
+     */
+    public void setComprovante(String comprovante) {
+        this.comprovante = comprovante;
+    }
 }
