@@ -7,6 +7,7 @@ package locadoraveiculos;
 
 import java.util.Scanner;
 
+
 /**
  *
  * @author elyston
@@ -20,13 +21,13 @@ public class LocadoraVeiculos {
         // TODO code application logic here
         Scanner entre = new Scanner(System.in);
 //        int cont = 0, c = 0;
-        String nome, senha,dec,D = null,CL = null;
+        String nome, senha,D = null,CL = null;
         double juros = 0.12;
         gerente Q = new gerente("elyston", "788 476 212-91", "200 737", "99121 2861", "al. dos bambus", "###", "123 456", "123", 32, 0, "12 746 12 - RR");
         cliente[] C = new cliente[100];
         carro[] Carro = new carro[5];
         carro[] reserva = new carro[5];
-        int cont1 = 0, cont2 = 0, cont3 = 0, comando;
+        int cont1 = 0, cont2 = 0, cont3 = 0, comando = 0;
         login P1;
         do{
            System.out.println("login:");
@@ -36,71 +37,67 @@ public class LocadoraVeiculos {
             //área do administrador
             if(nome.equals(Q.getNome()) && senha.equals(Q.getSenha())){
                   P1 = Q;
-                  do{
-                      System.out.print("entre com a marca do carro: ");     String M = entre.next();    System.out.println();
-                      System.out.print("entre com a quantidade do carro: ");  int quant = entre.nextInt();   System.out.println();
-                      System.out.print("entre com o modelo do carro: ");   String N = entre.next(); System.out.println();
-                      System.out.print("entre com o valor do modelo: ");    double Valor = entre.nextDouble(); System.out.println();
-                      Carro[cont1] = new carro(M, quant, N, Valor);
-                      System.out.print("deseja cadastrar outro modelo de carro s/n: "); dec = entre.next(); 
-                      cont1++;
-                  }while(cont1 < Carro.length && "s".equals(dec));
-                  for (int i = 0; i < cont1; i++) {
-                      Carro[i].consulta();
-                  }
-                  do{
-                      System.out.print("deseja cadastrar um novo cliente? s/n: "); 
-                      dec = entre.next();
-                      if("s".equals(dec)){
-                          System.out.print("nome: ");     
-                          String N = entre.next();    
-                          System.out.println();
-                          System.out.print("endereço: ");  
-                          String End = entre.next();   
-                          System.out.println();
-                          System.out.print("rg: ");   
-                          String rg = entre.next(); 
-                          System.out.println();
-                          System.out.print("CPF: ");    
-                          String cpf = entre.next(); 
-                          System.out.println();
-                          System.out.print("CNH: ");     
-                          String cnh = entre.next();    
-                          System.out.println();
-                          System.out.print("numero do cartão de credito: ");  
-                          String CC = entre.next();   
-                          System.out.println();
-                          System.out.print("idade: ");   
-                          int idade = entre.nextInt(); 
-                          System.out.println();
-                          System.out.print("senha: ");    
-                          String S = entre.next();  
-                          System.out.println();
-                          System.out.print("agencia: ");    
-                          String A = entre.next();  
-                          System.out.println();
-                          System.out.print("telefone contato: ");    
-                          String phone = entre.next();  
-                          System.out.println();
-                          System.out.print("saldo em conta: ");    
-                          double dinheiro = entre.nextDouble();  
-                          System.out.println();
-                          C[cont2] = new cliente(N, cpf, rg, phone, End, cnh, CC, senha, idade, A, dinheiro);
-                          cont2++;
-                      }
-                  }while(cont2 < C.length && "s".equals(dec));
-                  for (int i = 0; i < cont2; i++) {
-                      C[i].cliente();
-                  }
-                  do{
-                      System.out.println("qual o seu nome?");
-                      String NOME = entre.next();
-                      for (int i = 0 ; i < cont2 ; i++) {
-                        if(NOME.equals(C[i].getNome())){
-                            System.out.println("deseja reservar o carro? s/n");
-                            CL = entre.next();
-                            if("s".equals(CL)){
-                                  for(int j = 0; j < cont1; j++){
+                  System.out.println("1 - cadastro carro");
+                  System.out.println("2 - exibe carros disponiveis");
+                  System.out.println("3 - cadastro clientes");
+                  System.out.println("4 - exibe clientes");
+                  System.out.println("5 - visão geral dos carros");
+                  System.out.println("6 - reservar carro");
+                  System.out.println("7 - sair");
+                  int OP = entre.nextInt();
+                  if(OP != 7){
+                      switch(OP){
+                            case 1:  
+                                System.out.print("entre com a marca do carro: ");     String M = entre.next();    System.out.println();
+                                System.out.print("entre com a quantidade do carro: ");  int quant = entre.nextInt();   System.out.println();
+                                System.out.print("entre com o modelo do carro: ");   String N = entre.next(); System.out.println();
+                                System.out.print("entre com o valor do modelo: ");    double Valor = entre.nextDouble(); System.out.println();
+                                Carro[cont1] = new carro(M, quant, N, Valor);
+                                cont1++;
+                                break;
+                            case 2:
+                                for (int i = 0; i < cont1; i++) {
+                                    Carro[i].consulta();
+                                }
+                                break;
+                            case 3:   
+                                System.out.print("nome: ");    String Nome = entre.next();     System.out.println();
+                                System.out.print("endereço: ");    String End = entre.next();   System.out.println();
+                                System.out.print("rg: ");      String rg = entre.next();     System.out.println();
+                                System.out.print("CPF: ");     String cpf = entre.next();    System.out.println();
+                                System.out.print("CNH: ");    String cnh = entre.next();   System.out.println();
+                                System.out.print("numero do cartão de credito: ");   String CC = entre.next();   System.out.println();
+                                System.out.print("idade: ");   int idade = entre.nextInt();     System.out.println();
+                                System.out.print("senha: ");   String S = entre.next();      System.out.println();
+                                System.out.print("agencia: ");    String A = entre.next();      System.out.println();
+                                System.out.print("telefone contato: ");   String phone = entre.next();      System.out.println();
+                                System.out.print("saldo em conta: ");   double dinheiro = entre.nextDouble();    System.out.println();
+                                C[cont2] = new cliente(Nome, cpf, rg, phone, End, cnh, CC, senha, idade, A, dinheiro);
+                                cont2++;
+                                break;
+                            case 4:  
+                                for (int i = 0; i < cont2; i++) {
+                                    C[i].cliente();
+                                }
+                                break;
+                            case 5:
+                                for (int i = 0, j = 0; i < cont1 || j < cont3; i++, j++) {
+                                    if(Carro[i].modelo == reserva[j].modelo){
+                                        reserva[j].consulta();
+                                    }else{
+                                        Carro[i].consulta();
+                                    }
+                                }
+                                break;
+                            case 6:
+                                System.out.println("qual o seu nome?");
+                                String NOME = entre.next();
+                                for (int i = 0 ; i < cont2 ; i++) {
+                                   if(NOME.equals(C[i].getNome())){
+                                   System.out.println("deseja reservar o carro? s/n");
+                                   CL = entre.next();
+                                   if("s".equals(CL)){
+                                      for(int j = 0; j < cont1; j++){
                                         Carro[i].consulta();
                                         System.out.print("que modelo de carro deseja reservar? "); 
                                         String MCarro = entre.next();  
@@ -122,21 +119,22 @@ public class LocadoraVeiculos {
                                             }
                                             cont3++;
                                             System.out.println("reserva feita com sucesso");
-                                            System.out.println("saldo do cliente: " + C[j].C.getSaldo());
+                                            C[i].setComprovante("transação efetuado com sucesso, pode vir pegar o carro");
                                         }
+                                      }
+                                   }
                                   }
-                            }
-                            System.out.println("saldo do gerente: "+Q.C.getSaldo());
-                        }
-
+                                
+                                }
+                                break;
                       }
-                  }while(cont3 < cont2 && "n".equals(CL));
-                  System.out.println("numero de carros reservados");
+                  }
+//                System.out.println("numero de carros reservados");
                   for (int k = 0; k < cont3; k++) {
                       reserva[k].consulta();
                   }
             }else{
-                System.out.println("deseja se cadastrar? s/n");
+                System.out.printf("usuario nao encontrado\ndeseja se cadastrar? s/n");
                 D = entre.next();
                 if("s".equals(D)){
                     System.out.print("nome: ");     
@@ -214,10 +212,12 @@ public class LocadoraVeiculos {
                     }
                 }
             }
+            
             System.out.print("TECLE 1 PARA FINALIZAR:");
             comando = entre.nextInt();
             System.out.println();
-        }while(comando == 1);
+            
+        }while(comando != 1);
         
     }
 }
