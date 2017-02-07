@@ -8,11 +8,9 @@ import banco.conta;
 import banco.contacorrente;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 /**
  *
  * @author elyston
@@ -22,10 +20,7 @@ public class pessoa{
     private String nome;
     private String CPF;
     private String RG;
-    private String phone;
-    private String end;
     private String CNH;
-    private String CCredito;
     private String senha;
     private String comprovante;
     private String DNascim;
@@ -37,11 +32,8 @@ public class pessoa{
         this.setCodigo(codigo);
         this.setNome(nome);
         this.setCPF(CPF);
-        this.setEnd(end);
         this.setRG(RG);
         this.setCNH(CNH);
-        this.setCCredito(CCredito);
-        this.setPhone(phone);
         this.setSenha(senha);
         this.setDNascim(nascimento);
         this.CC.setSaldo(saldo);
@@ -89,34 +81,7 @@ public class pessoa{
         this.RG = RG;
     }
 
-    /**
-     * @return retorna telefone da pessoa
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * @param phone telefone da pessoa
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    /**
-     * @return retorna endereço da pessoa
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * @param end endereço da pessoa
-     */
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
+    
     /**
      * @return retorna CNH da pessoa
      */
@@ -134,17 +99,7 @@ public class pessoa{
     /**
      * @return retorna cartão de crédito
      */
-    public String getCCredito() {
-        return CCredito;
-    }
-
-    /**
-     * @param CCredito cartão de crédito
-     */
-    public void setCCredito(String CCredito) {
-        this.CCredito = CCredito;
-    }
-
+    
     /**
      * @return retorna senha
      */
